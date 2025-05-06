@@ -7,7 +7,12 @@ const mongoose=require("mongoose")
 const cookieParser = require('cookie-parser');
 
 
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173','http://15.207.106.66/'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-user-id'], // ✅ Add your custom header here
+}));
 
 
 app.use(express.json());
@@ -18,7 +23,7 @@ app.use(cookieParser())
 mongoose.connect(process.env.MongoDB_URL).then(result=>console.log('mongodb connected')).catch(e=>console.error('error occured',e));
 
 
-app.use('/api/auth',authRoutes)
+app.use('/auth',authRoutes)
 
 
 const PORT = 3000;

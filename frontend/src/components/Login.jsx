@@ -26,7 +26,7 @@ const Login = () => {
     try {
       // 1. Start authentication - get options from backend
       const { data: options } = await axios.post(
-        `${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/login-start`, 
+        `${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/login-start`, 
         { email }
       );
 
@@ -35,7 +35,7 @@ const Login = () => {
 
       // 3. Send assertion to backend for verification
       const { data } = await axios.post(
-        `${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/login-finish`,
+        `${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/login-finish`,
         { 
           email,
           assertionResponse: assertion 
@@ -62,7 +62,7 @@ const Login = () => {
       } else {
         // Fetch user data if not included in response
         const userResponse = await axios.get(
-          `${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/fetchuserdata`,
+          `${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/fetchuserdata`,
           {
             headers: {
               Authorization: `Bearer ${data.accessToken}`

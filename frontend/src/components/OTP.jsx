@@ -18,7 +18,7 @@ const OTP = () => {
 
   const handleSendOTP = async () => {
     try {
-      const response = await axios.post(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/send-otp`, { email }); // Adjust route if needed
+      const response = await axios.post(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/send-otp`, { email }); // Adjust route if needed
       setEmailSent(true);
       setMessage('OTP sent to your email.');
     } catch (err) {
@@ -30,7 +30,7 @@ const OTP = () => {
   const handleVerifyOTP = async () => {
     try {
       setVerifying(true);
-      const {data} = await axios.post(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/verify-otp`, { email, otp }); // Adjust route if needed
+      const {data} = await axios.post(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/verify-otp`, { email, otp }); // Adjust route if needed
       setMessage('OTP Verified! Backup Auth Activated.');
        // 4. On success, update global state and localStorage
        localStorage.setItem('accessToken', data.accessToken);
@@ -47,7 +47,7 @@ const OTP = () => {
        } else {
          // Fetch user data if not included in response
          const userResponse = await axios.get(
-           `${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/fetchuserdata`,
+           `${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/fetchuserdata`,
            {
              headers: {
                Authorization: `Bearer ${data.accessToken}`

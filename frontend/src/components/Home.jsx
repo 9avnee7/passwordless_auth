@@ -13,7 +13,7 @@ const Home = () => {
     } = useContext(GlobalContext);
 
     const handleLogOut=async()=>{
-      await fetch(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/logout`,{
+      await fetch(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/logout`,{
         method:'POST',
         credentials:"include"
       })

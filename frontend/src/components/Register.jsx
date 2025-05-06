@@ -17,7 +17,7 @@ const Register = () => {
     try {
       // 1. Start registration - get options from backend
       const { data: options } = await axios.post(
-        'http://localhost:3000/api/auth/register-start', 
+        'http://localhost:3000/auth/register-start', 
         { username, email }
       );
 
@@ -27,7 +27,7 @@ const Register = () => {
 
       // 3. Send attestation to backend for verification
       const { data } = await axios.post(
-        'http://localhost:3000/api/auth/register-finish',
+        'http://localhost:3000/auth/register-finish',
         { email, attestationResponse: attestation },
         {
           withCredentials: true, // This is crucial for sending cookies

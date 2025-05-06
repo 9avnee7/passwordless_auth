@@ -77,7 +77,7 @@ function App() {
     try {
       
         console.log("Refreshing token on refresh");
-        const res = await fetch(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/refresh`, {
+        const res = await fetch(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/refresh`, {
             method: "POST",
             credentials: "include",
         });
@@ -92,7 +92,7 @@ function App() {
           console.log("userinfor from session",userInfoFromSessionStorage)
 
             if (res.ok) {
-                const userDataResponse = await fetch(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/api/auth/fetchuserdata`, {
+                const userDataResponse = await fetch(`${import.meta.env.VITE_IDENTITY_SERVICE_URL}/auth/fetchuserdata`, {
                     method: "GET",
                     credentials: "include",
                     headers: {
